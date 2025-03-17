@@ -6,6 +6,10 @@ font-family: 'Arial', sans-serif;
 margin: 0;
 padding: 0;
 }
+.max-w-full {
+width: 140px;
+height: 85px;
+}
 .header-container {
 text-align: center;
 margin-bottom: 20px;
