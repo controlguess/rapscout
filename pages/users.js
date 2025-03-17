@@ -19,16 +19,18 @@ export default function Users() {
         setInventory([]);
 
         try {
+        // Fetch user info (headshot and username)
             const headshotRes = await fetch(`/api/getheadshot?id=${userId}`);
             if (!headshotRes.ok) {
                 throw new Error("Failed to fetch user headshot.");
             }
-            const headshotUrl = headshotRes.url;
+            const headshotUrl = headshotRes.url; // Direct URL from redirect
 
-            const inventoryRes = await fetch("https://hexagon.pw/api/users/inventory", {
+        // Fetch user inventory from our backend API
+            const inventoryRes = await fetch("/api/getInventory", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userid: parseInt(userId), page: 1 }),
+                body: JSON.stringify({ userid: userId }),
             });
 
             if (!inventoryRes.ok) {
@@ -38,12 +40,13 @@ export default function Users() {
             const inventoryData = await inventoryRes.json();
 
             if (inventoryData.success) {
-                const limitedItems = inventoryData.data.inventory.filter(
+            // Filter limited items
+                const limitedItems = inventoryData.inventory.filter(
                     (item) => item.limited || item.limited === "limitedu"
                 );
                 setUserData({
                     headshotUrl,
-                    username: inventoryData.data.username,
+                    username: inventoryData.username, // Assuming username is part of the response
                 });
                 setInventory(limitedItems);
             } else {
@@ -55,6 +58,7 @@ export default function Users() {
             setLoading(false);
         }
     };
+
 
     return (
         <div className="bg-gray-900 text-white min-h-screen p-6">
