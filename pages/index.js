@@ -27,7 +27,7 @@ export default function Home() {
     return (
         <div className="bg-gray-900 text-white min-h-screen p-6">
             <div className="header-container">
-                <img src="/assets/headerlongtext.png" alt="Header" className="max-w-full" />
+                <img style="width: 140px;" src="/assets/headerlongtext.png" alt="Header" className="max-w-full" />
             </div>
 
             <div className="toggle-container">
