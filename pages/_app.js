@@ -6,7 +6,7 @@ export default function MyApp({ Component, pageProps }) {
         <>
             <Head>
                 <title>RapScout</title>
-                <link rel="icon" href="/assets/favicon.png" />
+                <link rel="shortcut icon" href="/assets/favicon.png" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="description" content="RapScout - Track and analyze collectibles on Hexagon!" />
             </Head>
