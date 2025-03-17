@@ -28,7 +28,7 @@ export default function Users() {
             const inventoryRes = await fetch("https://hexagon.pw/api/users/inventory", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userid: userId, page: 1 }),
+                body: JSON.stringify({ userid: parseInt(userId), page: 1 }),
             });
 
             if (!inventoryRes.ok) {
