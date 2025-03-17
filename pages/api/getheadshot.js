@@ -30,14 +30,9 @@ export default async function handler(req, res) {
             throw new Error("Failed to retrieve valid headshot data");
         }
 
-        res.status(200).json({
-            success: true,
-            message: "",
-            data: {
-                url: data.data.url,
-                status: data.data.status
-            }
-        });
+        const imageUrl = data.data.url;
+        res.redirect(302, imageUrl);
+
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
