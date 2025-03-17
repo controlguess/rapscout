@@ -39,14 +39,15 @@ export default function Users() {
 
             const inventoryData = await inventoryRes.json();
 
-            if (inventoryData.success) {
+        // Check if the inventory data has the inventory field and contains items
+            if (inventoryData.inventory && inventoryData.inventory.length > 0) {
             // Filter limited items
                 const limitedItems = inventoryData.inventory.filter(
                     (item) => item.limited || item.limited === "limitedu"
                 );
                 setUserData({
                     headshotUrl,
-                    username: inventoryData.username, // Assuming username is part of the response
+                    username: userId, // assuming username is not provided, use userId or add a username field to the response
                 });
                 setInventory(limitedItems);
             } else {
@@ -55,7 +56,7 @@ export default function Users() {
         } catch (err) {
             setError(err.message);
         } finally {
-            setLoading(false);
+        setLoading(false);
         }
     };
 
